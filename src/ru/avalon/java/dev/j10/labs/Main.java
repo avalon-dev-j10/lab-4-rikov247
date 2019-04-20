@@ -1,84 +1,40 @@
 package ru.avalon.java.dev.j10.labs;
 
-import java.util.Comparator;
+import ru.avalon.java.dev.j10.labs.person.*;
+import ru.avalon.java.dev.j10.labs.randomRealization.*;
+import ru.avalon.java.dev.j10.labs.sort.*;
+import java.util.Comparator; 
 
 public class Main {
 
     public static void main(String[] args) {
-        /*
-         * TODO(Студент): Проинициализируйте массив strings
-         *
-         * Массив слелдует проинициализировать таким образом,
-         * чтобы он содержал 20 строк, расположенных не
-         * по порядку.
-         */
-	    String[] strings = null;
 
-	    /*
-	     * TODO(Студент): Проинициализируйте массив persons
-	     *
-	     * 1. Создайте класс, реализующий интерфейс Person.
-	     *
-	     * 2. Проинициализируйте массив persons 20
-	     *    экземплярыми созданного класса.
-	     */
-	    Person[] persons = null;
+        // Strings (Строки)
+        String[] strings = new String[20]; // создание пустого массива строк на 20 элементов
 
-        /*
-         * TODO(Студент): Проинициализируйте переменную sort
-         *
-         * 1. Создайте класс, реализующий интерфейс Sort
-         *
-         * 2. Проинициализируйте переменную sort экземпляром
-         *    созданного класса.
-         */
-        Sort sort = null;
+        RandomString randomString = new RandomString(); // создание экземпляра класса RandomString
 
-        /*
-         * TODO(Студент): Проинициализируйте переменную comparator
-         *
-         * 1. Создайте класс, реализующий интерфейс Comparator.
-         *    Подумайте о контексте, в котором будет
-         *    использоваться экземпляр.
-         *
-         * 2. Проинициализируйте переменную comparator
-         *    экземпляром созданного класса.
-         */
-        Comparator comparator = null;
+        for (int i = 0; i < strings.length; i++) {
+            strings[i] = randomString.getRandomString(11); // заполнение массива string рандомными строками с задаваемым количеством символов
+        }
 
-        /*
-         * TODO(Студент): Отсортируйте массив persons по возрастанию
-         *
-         * 1. Если всё сделано правильно, предложенный вызов
-         *    метода sort должен отсортировать массив по
-         *    возрастанию.
-         *
-         * 2. С использованием отладчика убедитесь в том,
-         *    что массив отсортирован по возрастанию.
-         */
+        // Persons (Люди)
+        Personality[] persons = new Personality[20]; // создание пустого массива на 20 элементов типа Personality, которые реализуют интерфейс Person
+
+        PersonInitializer personInitializer = new PersonInitializer(); // создается экземпляр класса (инициализатор) PersonInitializer для доступа к методам этого класса
+        personInitializer.initialize(persons); // массив person инициализируется элементами (заполняется)
+
+        Sort sort = new Sorter(); // инициализация экземпляра класса Sorter, реализующего интерфейс Sort
+
+        Comparator comparator = new StringComparator(); // инициализация компаратора для строк
+
+        // Сортировка массива persons по возрастанию (имени)
         sort.sort(persons);
 
-        /*
-         * TODO(Студент): Отсортируйте массив strings по возрастанию
-         *
-         * 1. Если всё сделано правильно, предложенный вызов
-         *    метода sort должен отсортировать массив по
-         *    возрастанию.
-         *
-         * 2. С использованием отладчика убедитесь в том,
-         *    что массив отсортирован по возрастанию.
-         */
+        // Сортировка массива strings по возрастанию
         sort.sort(strings);
 
-        /*
-         * TODO(Студент): Отсортируйте массив strings по убыванию
-         *
-         * 1. Подумайте о том, какой Comparator следует
-         *    передать, чтобы массив сортировался по убыванию.
-         *
-         * 2. С использованием отладчика убедитесь в том,
-         *    что массив отсортирован по убыванию.
-         */
+        // Сортировка массива strings с помощью компаратора по убыванию
         sort.sort(strings, comparator);
     }
 }

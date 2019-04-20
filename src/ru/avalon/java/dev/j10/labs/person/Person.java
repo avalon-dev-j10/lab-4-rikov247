@@ -1,4 +1,4 @@
-package ru.avalon.java.dev.j10.labs;
+package ru.avalon.java.dev.j10.labs.person;
 
 import java.util.Date;
 
