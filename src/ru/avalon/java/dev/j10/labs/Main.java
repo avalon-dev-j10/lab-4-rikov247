@@ -43,6 +43,13 @@ public class Main {
         sort.sort(strings, comparator);
 
         //Сортировка массива strings с помощью компаратора по возрастанию (true). Если поставить false = сортировка по убыванию
+        /**
+         * Позже узнал, что можно было не городить возможность изменения
+         * направления сортировки и много где еще городить что..А просто
+         * использовать:<n>
+         * comparator = comparator.reversed();<n>
+         * sort.sort(strings,comparator);
+         */
         sort.sort(strings, comparator, true);
     }
 }
