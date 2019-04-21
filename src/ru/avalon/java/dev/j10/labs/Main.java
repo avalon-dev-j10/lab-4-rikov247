@@ -3,7 +3,7 @@ package ru.avalon.java.dev.j10.labs;
 import ru.avalon.java.dev.j10.labs.person.*;
 import ru.avalon.java.dev.j10.labs.randomRealization.*;
 import ru.avalon.java.dev.j10.labs.sort.*;
-import java.util.Comparator; 
+import java.util.Comparator;
 
 public class Main {
 
@@ -26,7 +26,7 @@ public class Main {
 
         Sort sort = new Sorter(); // инициализация экземпляра класса Sorter, реализующего интерфейс Sort
 
-        Comparator comparator = new StringComparator(); // инициализация компаратора для строк
+        Comparator comparator = new ComparatorOfComparableObject(); // инициализация компаратора
 
         // Сортировка массива persons по возрастанию (имени)
         sort.sort(persons);
@@ -34,7 +34,15 @@ public class Main {
         // Сортировка массива strings по возрастанию
         sort.sort(strings);
 
-        // Сортировка массива strings с помощью компаратора по убыванию
+        /**
+         * Сортировка массива strings с помощью компаратора по убыванию. По
+         * убыванию сортируется, потому что исходно сравниваем строку следующую
+         * с предыдущей. В классе компаратора. То есть дело в вызове
+         * стандартного для String метода compareTo в классе компаратора.
+         */
         sort.sort(strings, comparator);
+
+        //Сортировка массива strings с помощью компаратора по возрастанию (true). Если поставить false = сортировка по убыванию
+        sort.sort(strings, comparator, true);
     }
 }

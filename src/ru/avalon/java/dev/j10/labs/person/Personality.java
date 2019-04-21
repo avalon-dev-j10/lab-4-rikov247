@@ -62,7 +62,7 @@ public class Personality implements Person {
     public int hashCode() { // перезапись hashCode 
         return Objects.hash(name, birthDate); // делаем на основе существующего алгоритма; hashCode комбинации имени и возраста
     }
-    
+
     @Override
     public int compareTo(Object otherObject) { // сравнение объектов
         if (otherObject instanceof Personality) { // если otherObject это Personality, то
@@ -72,6 +72,22 @@ public class Personality implements Person {
             }
             return name.compareTo(otherPersonality.name) > 0 ? 1 : -1; // метод сравнения: если выполняется, то возвращаем 1; в ином случае -1
         }
-        throw new IllegalArgumentException("otherObject not a Personality");
+        throw new IllegalArgumentException("only objects of type Personality can be compared");
+    }
+
+    public int compareTo(Object otherObject, boolean sortingDirection) { // сравнение объектов с выбором направления сортировки
+        // if boolean true = сортировка по возрастанию; if boolean false = сортировка по убыванию
+        if (otherObject instanceof Personality) { // если otherObject это Personality, то
+            Personality otherPersonality = (Personality) otherObject; // приводим к типу
+            if (equals(otherPersonality)) {  // если у объектов равны и имя и возраст, то 0 (то есть сравниваем равенство полное)
+                return 0;
+            }
+            if (sortingDirection == true) {
+                return name.compareTo(otherPersonality.name) > 0 ? 1 : -1; // метод сравнения: если выполняется, то возвращаем 1; в ином случае -1
+            } else {
+                return otherPersonality.name.compareTo(name) > 0 ? 1 : -1; 
+            }
+        }
+        throw new IllegalArgumentException("only objects of type Personality can be compared");
     }
 }
